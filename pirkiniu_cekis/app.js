@@ -78,11 +78,33 @@ const items = data => {
         let item = items[Object.keys(items)[i]]
         
             for (let j = 0; j < 5; j++) {
-                if (j < 4) {
+                if (j < 3) {
                     let iteminfoHTML = item[Object.keys(item)[j]]
                     let newtabledata = document.createElement('td')
                     newtabledata.innerHTML = iteminfoHTML;
                     tablerow.appendChild(newtabledata)
+                } else if (j == 3) {
+                    let nuolaida = ''
+                    console.log(data.items[i].discount)
+                    if (data.items[i].discount.type === 'percentage') {
+                        nuolaida = data.items[i].discount.value 
+                        let newtabledata = document.createElement('td')
+                        newtabledata.innerHTML = nuolaida+'%';
+                        tablerow.appendChild(newtabledata)
+                    } else if (data.items[i].discount.type === 'fixed') {
+                        nuolaida = data.items[i].discount.value
+                        let newtabledata = document.createElement('td')
+                        newtabledata.innerHTML = nuolaida;
+                        tablerow.appendChild(newtabledata)
+                    } else {
+                        nuolaida = 'nun'
+                        let newtabledata = document.createElement('td')
+                        newtabledata.innerHTML = nuolaida;
+                        tablerow.appendChild(newtabledata)
+                    }
+                    // let newtabledata = document.createElement('td')
+                    // newtabledata.innerHTML = iteminfoHTML;
+                    // tablerow.appendChild(newtabledata)
                 } else {
                     let fullprice = item[Object.keys(item)[1]] * item[Object.keys(item)[2]]
                     let newtabledata = document.createElement('td')
@@ -110,5 +132,4 @@ fetch('https://in3.dev/inv/')
     footeris(data)
     items(data)
     price(data)
-    console.log(data['items'].length)
 })
