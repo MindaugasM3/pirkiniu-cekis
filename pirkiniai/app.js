@@ -15,7 +15,8 @@ const produktai = data => {
             <tr>
                 <th><h2>Aprasymas</h2></th>
                 <th><h2>Kiekis</h2></th>
-                <th><h2>Kaina</h2></th>
+                <th><h2>Kaina be PVM</h2></th>
+                <th><h2>Kaina su PVM</h2></th>
                 <th><h2>Akcija</h2></th>
                 <th><h2>Kaina pagal kieki</h2></th>
             </tr>
@@ -26,7 +27,7 @@ const produktai = data => {
         if (item.discount !== undefined && item.discount.type === 'fixed'){
             discountType += '-'+item.discount.value
         } else if (item.discount !== undefined && item.discount.type === "percentage") {
-            discountType += '-'+(item.price/item.discount.value).toFixed(2)
+            discountType += '-'+(item.price/100*item.discount.value).toFixed(2)
         } else {
             discountType += '0'
         }
@@ -34,9 +35,10 @@ const produktai = data => {
             <tr>
                 <td description>${item.description}</td>
                 <td quantity>${item.quantity}</td>
+                <td PVMprice>${(item.price-(item.price*21/100)).toFixed(2)}</td>
                 <td price>${item.price}</td>
                 <td discount>${discountType}</td>
-                <td full-price>${(item.quantity*(item.price-discountType)).toFixed(2)}</td>
+                <td full-price>${(item.quantity*(item.price-(discountType*-1))).toFixed(2)}</td>
             </tr>
         `
     })

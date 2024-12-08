@@ -1,0 +1,18 @@
+[produktai] table tr td:not(:first-child) {
+    // border-right: 1px solid black;
+    padding-left: 30px;
+}
+
+[produktai] table tr th:not(:first-child) {
+    // border-right: 1px solid black;
+    padding-left: 30px;
+}
+
+// [produktai] table tr {
+//     text-align: center;
+// }
+
+[data-price] {
+    display: flex;
+    gap: 20px;
+}

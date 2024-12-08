@@ -1,0 +1,1 @@
+[produktai] table tr td:not(:first-child){padding-left:30px}[produktai] table tr th:not(:first-child){padding-left:30px}[data-price]{display:flex;gap:20px}
